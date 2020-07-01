@@ -142,7 +142,7 @@ function begin_play(){
 	begin_playbut.disabled = true;
 	playbut.disabled = false;
 	var info = document.getElementById("turn_info");
-	info.innerHTML = "Game has begun.";
+	info.innerHTML = "Game has begun. Player 1 goes first!";
 	}
 	}
 	
@@ -218,6 +218,8 @@ function play() {
 	if(move.value == table_ids[i]){
 	var movenum = document.getElementById(table_ids[i]);
 	if(whose_move()==1){
+	var info = document.getElementById("turn_info");
+	info.innerHTML = "Player 2's Turn!";
 	if(board_state[i] != -1){
 	alert("You cannot fill an already full cell");
 	console_log(board_state);
@@ -226,6 +228,7 @@ function play() {
 	board_state[i] = 1;
 	movenum.innerHTML = "X";
 	toggle_move();
+	move.value= move.defaultValue;
 	if(winmethod1(board_state,1)==true || winmethod2(board_state,1)==true || winmethod3(board_state,1)==true){
 	alert("Player 1 wins!");
 	reset_play();
@@ -233,6 +236,8 @@ function play() {
 	}
 	}
 	else if(whose_move()==0){
+	var info = document.getElementById("turn_info");
+	info.innerHTML = "Player 1's Turn!";
 	if(board_state[i] != -1){
 	alert("You cannot fill an already full cell");
 	}
@@ -240,6 +245,7 @@ function play() {
 	board_state[i] = 0;
 	movenum.innerHTML = "O";
 	toggle_move();
+	move.value= move.defaultValue;
 	if(winmethod1(board_state,0)==true || winmethod2(board_state,0)==true || winmethod3(board_state,0)==true){
 	alert("Player 2 wins!");
 	reset_play();
